@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+public class MotorControl {
+
+    // Simulate motor pins
+    static final int m11 = 11; // M1a
+    static final int m12 = 12; // M1b
+    static final int m21 = 10; // M2a
+    static final int m22 = 9;  // M2b
+
+    // Simulate digital pin states
+    static void digitalWrite(int pin, boolean state) {
+        System.out.println("Pin " + pin + " is set to " + (state ? "HIGH" : "LOW"));
+    }
+
+    static void forward() {
+        digitalWrite(m11, true);
+        digitalWrite(m12, false);
+        digitalWrite(m21, true);
+        digitalWrite(m22, false);
+    }
+
+    static void left() {
+        digitalWrite(m11, false);
+        digitalWrite(m12, true);
+        digitalWrite(m21, true);
+        digitalWrite(m22, false);
+    }
+
+    static void backward() {
+        digitalWrite(m11, false);
+        digitalWrite(m12, true);
+        digitalWrite(m21, false);
+        digitalWrite(m22, true);
+    }
+
+    static void right() {
+        digitalWrite(m11, true);
+        digitalWrite(m12, false);
+        digitalWrite(m21, false);
+        digitalWrite(m22, true);
+    }
+
+    static void stop() {
+        digitalWrite(m11, false);
+        digitalWrite(m12, false);
+        digitalWrite(m21, false);
+        digitalWrite(m22, false);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Motor Control Started. Enter commands (1-Forward, 2-Left, 3-Right, 4-Backward, 5-Stop)");
+
+        while (true) {
+            String input = scanner.nextLine().trim();
+            switch (input) {
+                case "1":
+                    System.out.println("Forward");
+                    forward();
+                    break;
+                case "2":
+                    System.out.println("Left");
+                    left();
+                    break;
+                case "3":
+                    System.out.println("Right");
+                    right();
+                    break;
+                case "4":
+                    System.out.println("Backward");
+                    backward();
+                    break;
+                case "5":
+                    System.out.println("Stop");
+                    stop();
+                    break;
+                default:
+                    System.out.println("Invalid command. Use 1 to 5 only.");
+            }
+        }
+    }
+}
